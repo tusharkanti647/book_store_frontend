@@ -1,0 +1,146 @@
+header{
+    display: flex;
+    flex-direction: column;
+    background-color:  white; /* black */
+    width:100%;
+    top: 0;
+    /* z-index:2; */
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    /* width: 100%; */
+}
+
+header nav{
+    width: 100%;
+    margin: auto;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 4;
+}
+
+header > nav .navlogo{
+    display: flex;
+    margin-top: 10px;
+}
+
+header nav .left{
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    /* border: 2px solid red; */
+    flex: .7;
+}
+.left .navlogo img{
+    height: 70px;
+    /* width: ; */
+}
+
+
+header > .nav_searchbaar_down{
+    display: none;
+}
+
+header > nav > .left input, header > .nav_searchbaar_down input{
+    width:400px;
+    height: 38px;
+    /* border: none; */
+    outline: none;
+
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px;
+    border-bottom-right-radius: none;
+    border-bottom-right-radius: none;
+    font-size: 14px;
+    padding-left: 10px;
+
+}
+
+header nav .left #search_icon, .nav_searchbaar_down #search_icon{
+    background-color: #FB8628;
+    height: 43px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+    cursor: pointer;
+}
+
+header nav .nav_searchbaar, .nav_searchbaar_down{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav_searchbaar_down{
+    display: none;
+}
+
+
+header nav .right{
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    /* border: 2px solid red; */
+    flex: .3;
+}
+
+
+@media (max-width:800px){
+
+    header nav{
+        overflow: hidden;
+    }
+
+    header nav .left .nav_searchbaar input{
+        width: 200px;
+    }
+    .left .navlogo img{
+        height: 50px;
+        /* width: ; */
+    }
+    .left .navlogo span > .logo_text{
+        font-size: 22px;
+        font-weight: bold;
+    
+    }
+ 
+}
+
+@media (max-width:600px){
+    header nav .left .nav_searchbaar{
+        display: none;
+    }
+    header .nav_searchbaar_down{
+        display:block;
+        padding-bottom: 10px;
+    }
+    header .nav_searchbaar_down input{
+        width: 300px;
+        margin-left: 10px;
+    }
+
+    .left .navlogo img{
+        height: 50px;
+        width: 50px ;
+        /* width: ; */
+    }
+    .left .navlogo span > .logo_text{
+        font-size: 22px;
+        font-weight: bold;
+    
+    }
+    header nav .left{
+        flex: .33;
+    }
+}
+
+@media (max-width:415px){
+    header .nav_searchbaar_down input{
+        width: 200px;
+    }
+}

@@ -11,7 +11,7 @@ import Menu from "./model/Menu";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import {searchNameReducer, isAddProductReducer } from "../../redux_toolkit/slices/functionSlices";
+import { searchNameReducer, isAddProductReducer } from "../../redux_toolkit/slices/functionSlices";
 
 
 
@@ -75,7 +75,9 @@ function Navbar() {
                                 component="div"
                                 sx={{ display: { sm: 'block' } }}
                             >
-                                <img src={logo} alt='logo' />
+                                <Link to="/">
+                                    <img src={logo} alt='logo' />
+                                </Link>
                             </Typography>
                         </div>
 

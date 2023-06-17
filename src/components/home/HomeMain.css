@@ -9,17 +9,14 @@
     align-items: center;
 }
 .top-bar{
-    margin-top: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     width: 95%;
-    /* margin-top: 15px;
-    display: flex;
-    justify-content: space-between;
-    width: 95%; */
 }
-.top-bar>img{
+.top-bar img{
     width: 150px;
 }
 

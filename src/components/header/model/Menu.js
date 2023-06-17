@@ -3,7 +3,7 @@ import "./Menu.css";
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import MenuIcon from '@mui/icons-material/Menu';
-import { IconButton} from '@mui/material';
+import { IconButton } from '@mui/material';
 
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -23,7 +23,7 @@ export default function Menu({ isLogIn }) {
     const handleClose = () => {
         setOpen(false);
     };
- 
+
 
 
 
@@ -61,7 +61,9 @@ export default function Menu({ isLogIn }) {
                         <div>Home</div>
                     </Link>
                     {isLogIn ? <div onClick={handelSignOut}>SignOut</div> : <Link to="/signIn" > <div>SignIn</div> </Link>}
-                    <div>User</div>
+                    <Link to="/books">
+                        <div>All Books</div>
+                    </Link>
                 </Box>
 
             </Modal>

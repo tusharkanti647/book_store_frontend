@@ -14,4 +14,7 @@
 .menu-modal div{
     border-bottom: 2px solid #888888;
     padding: 10px;
+    color: black;
+    cursor: pointer;
+    font-weight: 600;
 }

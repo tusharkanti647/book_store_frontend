@@ -7,6 +7,8 @@ import HomeMain from './components/home/HomeMain';
 import { Routes, Route } from "react-router-dom";
 import SignUp from './components/signUP_signIn/signUp';
 import SignIn from './components/signUP_signIn/signIn';
+import MainBooksPage from './components/books/MainBookstPage';
+import Basket from './components/basket/Basket';
 
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
       <Route path='/signup' element={<SignUp />}></Route>
       <Route path='/signIn' element={<SignIn />}></Route>
       <Route path='/aboutbook/:id' element={<AboutBook />}></Route>
+      <Route path='/books' element={<MainBooksPage />}></Route>
+      <Route path="/basket" element={<Basket />}></Route>
       </Routes>
 
       <Footer />

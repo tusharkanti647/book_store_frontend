@@ -4,7 +4,7 @@ import "./SignIn.css"
 // import * as React from 'react';
 import Box from '@mui/material/Box';
 import { TextField } from '@mui/material';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Lodar from "../lodar/Lodar";
 
@@ -13,6 +13,7 @@ import Lodar from "../lodar/Lodar";
 
 export default function SignIn() {
     const [isLodar, setIsLodar] = useState(false);
+    const navigate=useNavigate();
     const [signInData, setSignInData] = useState({
         password: "",
         email: ""
@@ -50,8 +51,9 @@ export default function SignIn() {
         } else {
             alert("user sucessfull signin");
             localStorage.setItem("token", data.token);
+            navigate("/");
             window.location.reload();
-            //navigate to home page
+            
 
             setSignInData({
                 ...signInData,

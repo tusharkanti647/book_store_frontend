@@ -60,7 +60,7 @@ export default function Menu({ isLogIn }) {
                     <Link to="/" onClick={handleClose}>
                         <div>Home</div>
                     </Link>
-                    {isLogIn ? <div onClick={handelSignOut}>SignOut</div> : <div>SignIn</div>}
+                    {isLogIn ? <div onClick={handelSignOut}>SignOut</div> : <Link to="/signIn" > <div>SignIn</div> </Link>}
                     <div>User</div>
                 </Box>
 

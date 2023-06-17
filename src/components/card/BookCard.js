@@ -49,7 +49,7 @@ function BookCard({ book, basketQty }) {
     //creat link and product id
     //---------------------------------------------------------------------------------
     const id = book._id;
-    const link = `/aboutproduct/${id}`;
+    const link = `/aboutbook/${id}`;
 
 
 

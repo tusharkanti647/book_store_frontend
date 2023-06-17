@@ -21,7 +21,6 @@ function Sidebar() {
         dispatch(filterArrReducer(arr));
 
     }
-    console.log(filterDataArr);
 
 
     return (

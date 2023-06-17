@@ -22,21 +22,19 @@ import Tostyfy from "../tostyfy/Tostyfy";
 
 
 
-
-
-
 function BookCard({ book, basketQty }) {
     const [productQty, setProductQty] = useState(1);
-   // const [itemNumber, setItemNumber] = useState(product.qty);
-    const [isBtnDisabled, setIsBtnDisabled] = useState({addBtn: false, removeBtn: false});
+    // const [itemNumber, setItemNumber] = useState(product.qty);
+    const [isBtnDisabled, setIsBtnDisabled] = useState({ addBtn: false, removeBtn: false });
     const [isLodar, setIsLodar] = useState(false);
     const [isShowTostyfy, setShowTostyfy] = useState(false);
     const [satingTostyfy, setSatingTostyfy] = useState({
-        message:"",
-        severity:""
+        message: "",
+        severity: ""
     });
+    const dispatch = useDispatch();
 
-  
+
 
     //if  basketQty present then  productQty set as basketQty value
     //------------------------------------------------------------------------------
@@ -50,25 +48,83 @@ function BookCard({ book, basketQty }) {
     //---------------------------------------------------------------------------------
     const id = book._id;
     const link = `/aboutbook/${id}`;
+    const token = localStorage.getItem("token");
+
+    //product update 
+    //------------------------------------------------------------------------------------
+    //useEffect(() => {
+    const basketUpdate = async () => {
+        setIsLodar(true);
+        const response = await fetch("http://localhost:8000/basket/" + id, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: token
+            },
+
+            body: JSON.stringify({ qty: productQty })
+        });
+
+        if (response.status !== 200) {
+            //console.log("hello");
+            //dispatch(addToBasket({ ...product, qty: productQty }));
+            setIsLodar(false);
+            setSatingTostyfy({ ...satingTostyfy, message: "Please login first.", severity: "info" });
+            setShowTostyfy(true);
+            return
+        }
+        if (response.status === 200) {
+            console.log("hello");
+            dispatch(isAddProductReducer(true));
+            setIsLodar(false);
+            setSatingTostyfy({ ...satingTostyfy, message: "product add to basket successfully.", severity: "success" });
+            setShowTostyfy(true);
+        }
+    }
+
+    //add product in basket
+    //-------------------------------------------------------------------------
+    const handelAdd = () => {
+        basketUpdate();
+
+    }
 
 
+    //product Quantity updte
+    //--------------------------------------------------------------------------------
+    useEffect(() => {
+        setIsBtnDisabled({ ...isBtnDisabled, addBtn: true, removeBtn: true });
+        const hndelProductQuantity = async () => {
+            //setIsLodar(true);
+            const response = await fetch("http://localhost:8000/basket-book/quantity-update", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": localStorage.getItem("token"),
+                },
+                body: JSON.stringify({ qty: productQty, titel: book.titel })
+            })
+            if (productQty > 1) {
+                setIsBtnDisabled({ ...isBtnDisabled, addBtn: false, removeBtn: false });
+            } else {
+                setIsBtnDisabled({ ...isBtnDisabled, addBtn: false, removeBtn: true });
+            }
+            //setIsLodar(false);
+        }
+        hndelProductQuantity();
+    }, [productQty]);
 
-
-
-
-
-   
 
     //---------------------------------------------------------------------------------
-if(isLodar){
-    return(
-        <Lodar />
-    )
-}
+    if (isLodar) {
+        return (
+            <Lodar />
+        )
+    }
 
     return (
         <>
-        {isShowTostyfy?<Tostyfy satingTostyfy={satingTostyfy} />:""}
+            {isShowTostyfy ? <Tostyfy satingTostyfy={satingTostyfy} /> : ""}
             <Card className="card">
 
                 <Link to={link} >
@@ -95,12 +151,15 @@ if(isLodar){
                         <p>{book.rating}</p>
                         <StarIcon sx={{ fontSize: 12 }} />
                     </Typography>
-                    <Typography sx={{ display: 'flex', color: "#888888", bgcolor: "#F4F3F2" }} className="delhiver-detals" component="div">
+                    <Typography sx={{ fontSize: 12, color: "#888888" }} component="div">
+                        <del>MRP {book.originalPrice}</del> RS {book.discountPrice}
+                    </Typography>
+                    <Typography sx={{ display: 'flex', color: "#888888"}} className="delhiver-detals" component="div">
                         <LocalShippingIcon sx={{ fontSize: 40 }} />
                         <p >Standard Delivery: Tomorrow Morning</p>
                     </Typography>
                 </CardContent>
-                <CardActions sx={{ pt: "0px", bgcolor: "#F4F3F2" }}>
+                <CardActions sx={{ pt: "0px"}}>
                     {basketQty ?
                         <div className="item-count">
                             <button disabled={isBtnDisabled.removeBtn} onClick={() => setProductQty(productQty - 1)}><RemoveIcon /></button>
@@ -116,7 +175,7 @@ if(isLodar){
 
                             </div>
 
-                            <button className="add-to-card-button" >
+                            <button className="add-to-card-button" onClick={handelAdd}>
                                 <p>ADD</p>
                                 <ShoppingBasketIcon />
                             </button>

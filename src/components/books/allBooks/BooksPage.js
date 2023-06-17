@@ -18,12 +18,8 @@ function BooksPage() {
     let filters = useSelector((state) => state.functionSlices.filterArr);
     const ischeck = useSelector((state) => state.functionSlices.isAddProduct);
 
-    //let { isLoading, serverError, apiData } = useFetch("http://localhost:8000/addproduct");
-    //let newProductData = [];
-    //console.log(apiData);
     
     useEffect(() => {
-//console.log(filterDataArr);
         try {
             const fatchFun = async () => {
                 setIsLodar(true);
@@ -42,8 +38,6 @@ function BooksPage() {
                     querySearchString = querySearchString ? querySearchString + "&&filters=" + filters : querySearchString + "filters=" + filters;
 
                 }
-                //querySearchString=filters ? (querySearchString ? querySearchString + "&&filters=")
-
                 if (querySearchString) {
                     uid = `${uid}?${querySearchString}`;
                     //console.log(uid);
@@ -54,8 +48,6 @@ function BooksPage() {
                     setNewProductData([...data.data]);
                     setIsNextPagePresent(data.isNextPagePresent);
                 } else {
-                    //uid = `http://localhost:8000/products-search`;
-
                     const respons = await fetch(uid);
                     const data = await respons.json();
                     console.log("hello");
@@ -64,24 +56,7 @@ function BooksPage() {
                     setNewProductData([...data.data]);
                     setIsNextPagePresent(data.isNextPagePresent);
                 }
-            setIsLodar(false);
-
-                // if (sortInputValue) {
-                //     let sortQua = sortInputValue.split(" ").join("+");
-                //     uid = `http://localhost:8000/products-search?sortQue=${sortQua}`;
-                //     //console.log(uid);
-                //     const respons = await fetch(uid);
-                //     const data = await respons.json();
-                //     //console.log(data.data);
-                //     setNewProductData([...data.data]);
-                // }else{
-                //     uid = `http://localhost:8000/products-search`;
-                //     //console.log(uid);
-                //     const respons = await fetch(uid);
-                //     const data = await respons.json();
-                //     //console.log(data.data);
-                //     setNewProductData([...data.data]);
-                // }
+            setIsLodar(false);              
             }
             fatchFun();
         } catch (e) {
@@ -90,10 +65,7 @@ function BooksPage() {
 
     }, [sortInputValue, searchName, filters, pageNumber])
 
-    //const { isLoading, serverError, apiData } = useFetch("http://localhost:8000/addproduct");
-    //console.log(apiData);
 
-    //let newProductData = [];
 
     useEffect(() => {
         const fetchFun = async () => {
@@ -148,7 +120,6 @@ function BooksPage() {
 
 
                     <Box  className="card-contaner">
-                        {console.log(newProductData)}
                         {newProductData.map((book, ind) => findCartProduct(book) ? <BookCard key={ind} basketQty={findCartProduct(book).qty} book={book} /> : <BookCard key={ind} book={book} />)}
                     </Box>
                     <Box sx={{display:"flex", justifyContent:"space-around"}}>

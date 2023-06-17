@@ -18,10 +18,18 @@ import { useFetch } from "../../survices/getapi"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import { Margin } from "@mui/icons-material"
+import { useDispatch, useSelector } from "react-redux"
 
 
 function HomeMain() {
+    const [productQty, setProductQty] = useState(1);
     const [basketProductArr, setBasketProductArr] = useState([]);
+    const [isLodar, setIsLodar] = useState(false);
+    const ischeck = useSelector((state) => state.functionSlices.isAddProduct);
+    const dispatch = useDispatch();
+    const token = localStorage.getItem('token');
+
+    
 
 
     const bannerImg = "https://cdn.shopify.com/s/files/1/0622/2374/5251/files/grab_the_deal_now.jpg?v=1671789762";
@@ -35,6 +43,23 @@ function HomeMain() {
         newBookData.splice(5);
     }
 
+    useEffect(() => {
+        const fetchFun = async () => {
+            const response = await fetch("http://localhost:8000/basket", {
+                method: "GET",
+                headers: { Authorization: localStorage.getItem("token") }
+            });
+            if (response.statusText === "Unauthorized") {
+
+                //navigate("./");
+                //return;
+            } else {
+                const data = await response.json();
+                setBasketProductArr(data)
+            }
+        }
+            fetchFun();
+    }, [ischeck])
 
 
     //cart product present or not

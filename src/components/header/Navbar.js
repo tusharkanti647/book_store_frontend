@@ -36,7 +36,7 @@ function Navbar() {
     //-------------------------------------------------------------------------
     const handelSearchData = () => {
         dispatch(searchNameReducer(searchInputValue));
-        navigate("/products")
+        navigate("/books")
     }
 
     //fetch badge count

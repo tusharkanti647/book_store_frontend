@@ -30,7 +30,7 @@ function ItemList({ product, setBasketProductArr }) {
         const hndelProductQuantity = async () => {
             //setIsLodar(true);
             setIsBtnDisabled({ ...isBtnDisabled, addBtn: true, removeBtn: true });
-            const response = await fetch("http://localhost:8000/basket-book/quantity-update", {
+            const response = await fetch("https://book-store-api-xn99.onrender.com/basket-book/quantity-update", {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -53,7 +53,7 @@ function ItemList({ product, setBasketProductArr }) {
     //-----------------------------------------------------------------------------------------
     const remove1Product = async () => {
         setIsLodar(true);
-        const response = await fetch("http://localhost:8000/remove-book", {
+        const response = await fetch("https://book-store-api-xn99.onrender.com/remove-book", {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

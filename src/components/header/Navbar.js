@@ -43,7 +43,7 @@ function Navbar() {
     //-------------------------------------------------------------------------
     const fetchBadge = async () => {
         //setIsLodar(true);
-        const response = await fetch("http://localhost:8000/basket_badge/count", {
+        const response = await fetch("https://book-store-api-xn99.onrender.com/basket_badge/count", {
             method: "GET",
             headers: {
                 Authorization: token,

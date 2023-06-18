@@ -58,11 +58,11 @@ export default function Menu({ isLogIn }) {
             >
                 <Box className='menu-modal' >
                     <Link to="/" onClick={handleClose}>
-                        <div>Home</div>
+                        <div onClick={handleClose}>Home</div>
                     </Link>
-                    {isLogIn ? <div onClick={handelSignOut}>SignOut</div> : <Link to="/signIn" > <div>SignIn</div> </Link>}
+                    {isLogIn ? <div onClick={handelSignOut}>SignOut</div> : <Link to="/signIn" > <div onClick={handleClose}>SignIn</div> </Link>}
                     <Link to="/books">
-                        <div>All Books</div>
+                        <div onClick={handleClose}>All Books</div>
                     </Link>
                 </Box>
 

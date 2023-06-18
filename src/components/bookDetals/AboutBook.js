@@ -45,7 +45,7 @@ console.log(localStorage.getItem("token"));
     useEffect(() => {
         const fetchFun = async () => {
             //setIsLodar(true)
-            const response = await fetch("http://localhost:8000/basket", {
+            const response = await fetch("https://book-store-api-xn99.onrender.com/basket", {
                 method: "GET",
                 headers: { Authorization: localStorage.getItem("token") }
             });
@@ -68,7 +68,7 @@ console.log(localStorage.getItem("token"));
         const fetchData = async () => {
             try {
                 setIsLodar(true);
-                const response = await fetch(`http://localhost:8000/addbook/${id}`);
+                const response = await fetch(`https://book-store-api-xn99.onrender.com/addbook/${id}`);
                 const data = await response.json();
                 setOneProductData({ ...data });
                 setIsLodar(false);
@@ -98,7 +98,7 @@ console.log(localStorage.getItem("token"));
         const hndelProductQuantity = async () => {
             //setIsLodar(true);
             setIsBtnDisabled({...isBtnDisabled, addBtn:true, removeBtn:true});
-            const response = await fetch("http://localhost:8000/basket-book/quantity-update", {
+            const response = await fetch("https://book-store-api-xn99.onrender.com/basket-book/quantity-update", {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -122,7 +122,7 @@ console.log(localStorage.getItem("token"));
     //------------------------------------------------------------------------------------
     const basketUpdate = async () => {
         setIsLodar(true);
-        const response = await fetch("http://localhost:8000/basket/" + id, {
+        const response = await fetch("https://book-store-api-xn99.onrender.com/basket/" + id, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

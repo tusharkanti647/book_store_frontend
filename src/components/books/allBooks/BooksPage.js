@@ -24,7 +24,7 @@ function BooksPage() {
             const fatchFun = async () => {
                 setIsLodar(true);
                 setIsNextPagePresent(false);
-                let uid = "http://localhost:8000/books-search";
+                let uid = "https://book-store-api-xn99.onrender.com/books-search";
                 let querySearchString = "";
 
                 querySearchString = searchName ? querySearchString + "searchName=" + searchName : querySearchString;
@@ -70,7 +70,7 @@ function BooksPage() {
     useEffect(() => {
         const fetchFun = async () => {
             //setIsLodar(true);
-            const response = await fetch("http://localhost:8000/basket", {
+            const response = await fetch("https://book-store-api-xn99.onrender.com/basket", {
                 method: "GET",
                 headers: { Authorization: localStorage.getItem("token") }
             });

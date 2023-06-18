@@ -35,7 +35,7 @@ function HomeMain() {
     const bannerImg = "https://cdn.shopify.com/s/files/1/0622/2374/5251/files/grab_the_deal_now.jpg?v=1671789762";
 
 
-    const { isLoading, serverError, apiData } = useFetch("http://localhost:8000/addbook");
+    const { isLoading, serverError, apiData } = useFetch("https://book-store-api-xn99.onrender.com/addbook");
 
     let newBookData = [];
     if (apiData) {
@@ -45,7 +45,7 @@ function HomeMain() {
 
     useEffect(() => {
         const fetchFun = async () => {
-            const response = await fetch("http://localhost:8000/basket", {
+            const response = await fetch("https://book-store-api-xn99.onrender.com/basket", {
                 method: "GET",
                 headers: { Authorization: localStorage.getItem("token") }
             });

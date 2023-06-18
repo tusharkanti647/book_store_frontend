@@ -23,6 +23,11 @@ function Basket() {
     const [isLodar, setIsLodar] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [isShowTostyfy, setShowTostyfy] = useState(false);
+    const [satingTostyfy, setSatingTostyfy] = useState({
+        message: "",
+        severity: ""
+    });
 
 
     //fetch the basket data
@@ -30,7 +35,7 @@ function Basket() {
     useEffect(() => {
         const fetchFun = async () => {
             setIsLodar(true);
-            const response = await fetch("http://localhost:8000/basket", {
+            const response = await fetch("https://book-store-api-xn99.onrender.com/basket", {
                 method: "GET",
                 headers: { Authorization: localStorage.getItem("token") }
             });
@@ -72,7 +77,7 @@ function Basket() {
     //----------------------------------------------------------------------------------------
     const removeAllItem = async () => {
         setIsLodar(true);
-        const respons = await fetch("http://localhost:8000/empty-basket", {
+        const respons = await fetch("https://book-store-api-xn99.onrender.com/empty-basket", {
             method: "PUT",
             headers: { "Authorization": localStorage.getItem("token") }
         });
@@ -84,8 +89,10 @@ function Basket() {
 
     //checkout the items from basket
     //----------------------------------------------------------------------------------------
-    const checkout = () => {
-        removeAllItem();
+    const checkout = async () => {
+        await removeAllItem();
+        setSatingTostyfy({ ...satingTostyfy, message: "You are successfully buy books.", severity: "info" });
+        setShowTostyfy(true);
     }
 
 
@@ -97,7 +104,7 @@ function Basket() {
 
     if (basketProductArr.length <= 0) {
         return (
-            <Box sx={{color: "#0E7460"}} className="cart-buttom-part-botton-wrapper">
+            <Box sx={{ color: "#0E7460" }} className="cart-buttom-part-botton-wrapper">
                 <h2>OOPS......</h2>
                 <h3>Your Basket is empty.</h3>
                 <h3>Please continue to shopping.</h3>

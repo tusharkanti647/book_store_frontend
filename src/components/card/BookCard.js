@@ -55,7 +55,7 @@ function BookCard({ book, basketQty }) {
     //useEffect(() => {
     const basketUpdate = async () => {
         setIsLodar(true);
-        const response = await fetch("http://localhost:8000/basket/" + id, {
+        const response = await fetch("https://book-store-api-xn99.onrender.com/basket/" + id, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -96,7 +96,7 @@ function BookCard({ book, basketQty }) {
         setIsBtnDisabled({ ...isBtnDisabled, addBtn: true, removeBtn: true });
         const hndelProductQuantity = async () => {
             //setIsLodar(true);
-            const response = await fetch("http://localhost:8000/basket-book/quantity-update", {
+            const response = await fetch("https://book-store-api-xn99.onrender.com/basket-book/quantity-update", {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
